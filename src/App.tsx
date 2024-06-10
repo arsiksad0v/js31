@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Modal from './components/Modal';
+import Alert from './components/Alert';
 
-function App() {
+const App: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(true);
+
+  const handleModalClose = () => setShowModal(false);
+  const handleAlertDismiss = () => setShowAlert(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-5">
+      <h1>Demo Project</h1>
+      <button className="btn btn-primary" onClick={() => setShowModal(true)}>Show Modal</button>
+      {showAlert && (
+        <Alert type="warning" onDismiss={handleAlertDismiss}>
+          This is a warning type alert
+        </Alert>
+      )}
+      <Modal
+        show={showModal}
+        onClose={handleModalClose}
+        title="Some kinda modal title"
+        buttons={[
+          { type: 'primary', label: 'Continue', onClick: () => console.log('clicked continue') },
+          { type: 'danger', label: 'Close', onClick: handleModalClose }
+        ]}
+      >
+        <p>This is modal content</p>
+      </Modal>
     </div>
   );
 }
 
 export default App;
+
