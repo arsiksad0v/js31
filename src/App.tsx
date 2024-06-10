@@ -11,11 +11,11 @@ const App: React.FC = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Demo Project</h1>
+      <h1>Project</h1>
       <button className="btn btn-primary" onClick={() => setShowModal(true)}>Show Modal</button>
       {showAlert && (
         <Alert type="warning" onDismiss={handleAlertDismiss}>
-          This is a warning type alert
+          This is a warning 
         </Alert>
       )}
       <Modal
@@ -27,7 +27,7 @@ const App: React.FC = () => {
           { type: 'danger', label: 'Close', onClick: handleModalClose }
         ]}
       >
-        <p>This is modal content</p>
+        <p>Modal content</p>
       </Modal>
     </div>
   );
